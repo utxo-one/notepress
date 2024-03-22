@@ -3,116 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <title>utxo | freedom tech developer</title>
-    <style>
-      body {
-        font-family: "Arial", sans-serif;
-        background-color: #f4f4f4;
-        color: #333;
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-      }
+    <link href="/style/output.css" rel="stylesheet" />
 
-      .container {
-        max-width: 800px;
-        margin: auto;
-        overflow: hidden;
-        padding: 0 20px;
-      }
-
-      #profile {
-        background-color: #fff;
-        border-radius: 5px;
-        margin-top: 20px;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        text-align: center;
-      }
-
-      #image {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        margin-bottom: 15px;
-        border: 4px solid #333;
-        object-fit: cover;
-      }
-
-      #name {
-        font-size: 26px;
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
-
-      #about {
-        font-size: 16px;
-        margin-bottom: 20px;
-        color: #555;
-      }
-
-      #profile a {
-        display: inline-block;
-        margin: 10px;
-        color: #007bff;
-        text-decoration: none;
-        border: 1px solid #007bff;
-        border-radius: 5px;
-        padding: 5px 10px;
-      }
-
-      #profile a:hover {
-        background-color: #007bff;
-        color: white;
-      }
-
-      #notesContainer {
-        background-color: #fff;
-        border-radius: 5px;
-        margin: 20px 0;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-
-      .note {
-        margin-bottom: 20px;
-        padding: 10px;
-        border: 1px solid #eee;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-        text-align: left; /* Text alignment for the note content */
-      }
-
-      .note img {
-        display: block; /* Make images block-level to respect text-align */
-        margin: 0 auto; /* Center the image */
-        max-width: 100%; /* Ensure the image fits within the note */
-        height: auto; /* Maintain aspect ratio */
-      }
-
-      .note-content {
-        margin-bottom: 10px;
-        overflow: hidden; /* Hide overflow text */
-        text-overflow: ellipsis; /* Add ellipsis if text overflows */
-        word-break: break-word; /* Break words to prevent overflow */
-      }
-
-      .note-meta {
-        font-size: 0.8em;
-        color: #666;
-      }
-    </style>
   </head>
-  <body>
-    <div class="container">
-      <div id="profile">
-        <img id="image" src="" alt="Profile image" />
-        <h1 id="name"></h1>
-        <p id="about"></p>
-        <a id="lud16" href="lightning:"></a>
-        <a id="website" href="">Website</a>
+  <body class="font-sans bg-gray-500">
+    <div class="container px-4 mx-auto">
+      <div
+        id="profile"
+        class="p-8 mt-8 text-center bg-white rounded-lg shadow-md"
+      >
+        <img
+          id="image"
+          src=""
+          alt="Profile image"
+          class="object-cover w-32 h-32 mx-auto mb-4 border-4 border-gray-700 rounded-full"
+        />
+        <h1 id="name" class="mb-2 text-2xl font-bold"></h1>
+        <p id="about" class="mb-4 text-base text-gray-600"></p>
+        <a
+          id="lud16"
+          href="lightning:"
+          class="inline-block px-4 py-2 mx-2 text-blue-500 border border-blue-500 rounded hover:bg-blue-500 hover:text-white"
+        ></a>
+        <a
+          id="website"
+          href=""
+          class="inline-block px-4 py-2 mx-2 text-blue-500 border border-blue-500 rounded hover:bg-blue-500 hover:text-white"
+          >Website</a
+        >
       </div>
 
-      <div id="notesContainer"></div>
+      <div
+        id="notesContainer"
+        class="p-8 mt-8 bg-white rounded-lg shadow-md"
+      ></div>
     </div>
 
     <script type="module" src="/main.js"></script>
