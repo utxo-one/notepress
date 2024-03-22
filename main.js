@@ -2,19 +2,27 @@ import NDK from "@nostr-dev-kit/ndk";
 import { hexkey, npub, relays } from "./config";
 
 async function fetchData() {
-  const ndk = new NDK({
-    explicitRelayUrls: relays,
-  });
+  try {
+    const ndk = new NDK({ explicitRelayUrls: relays });
+    await ndk.connect();
 
-  await ndk.connect();
+    const user = await fetchUserProfile(ndk);
+    updateUserProfile(user.profile);
 
-  const user = ndk.getUser({
-    npub: npub,
-  });
+    const notes = await fetchNotes(ndk);
+    displayNotes(notes);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+}
 
+async function fetchUserProfile(ndk) {
+  const user = ndk.getUser({ npub });
   await user.fetchProfile();
-  const profile = user.profile;
+  return user;
+}
 
+function updateUserProfile(profile) {
   document.getElementById("name").textContent =
     profile.name || profile.displayName;
   document.getElementById("about").textContent = profile.about;
@@ -23,27 +31,29 @@ async function fetchData() {
   document.getElementById("image").src = profile.image;
   document.getElementById("website").href = profile.website;
   document.getElementById("website").textContent = profile.website;
+}
 
+async function fetchNotes(ndk) {
   const kind1filter = { kinds: [1], authors: [hexkey] };
-  let kind1s = await ndk.fetchEvents(kind1filter);
+  return ndk.fetchEvents(kind1filter);
+}
 
-  // Assuming `events` is a Set or array of event objects
+function displayNotes(notes) {
   const container = document.getElementById("notesContainer");
   container.innerHTML = ""; // Clear existing content
 
-  kind1s.forEach((note) => {
+  notes.forEach((note) => {
     const noteElement = document.createElement("div");
     noteElement.className = "note";
     noteElement.innerHTML = `
-            <div class="note-content">${note.content}</div>
-            <div class="note-meta">
-                <span>Published: ${new Date(
-                  note.created_at * 1000
-                ).toLocaleString()}</span>
-                <span>ID: ${note.id}</span>
-            </div>
-        `;
-
+      <div class="note-content">${note.content}</div>
+      <div class="note-meta">
+        <span>Published: ${new Date(
+          note.created_at * 1000
+        ).toLocaleString()}</span>
+        <span>ID: ${note.id}</span>
+      </div>
+    `;
     container.appendChild(noteElement);
   });
 }
