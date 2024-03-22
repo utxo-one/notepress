@@ -8,12 +8,12 @@ async function fetchData() {
 
   await ndk.connect();
 
-  const pablo = ndk.getUser({
+  const user = ndk.getUser({
     npub: npub,
   });
 
-  await pablo.fetchProfile();
-  const profile = pablo.profile;
+  await user.fetchProfile();
+  const profile = user.profile;
 
   document.getElementById("name").textContent =
     profile.name || profile.displayName;
