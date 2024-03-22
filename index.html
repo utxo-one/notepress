@@ -79,8 +79,14 @@
         border: 1px solid #eee;
         border-radius: 5px;
         background-color: #f9f9f9;
-        word-wrap: break-word; /* Break long words to prevent overflow */
-        overflow-wrap: break-word; /* Ensure overflow text is wrapped */
+        text-align: left; /* Text alignment for the note content */
+      }
+
+      .note img {
+        display: block; /* Make images block-level to respect text-align */
+        margin: 0 auto; /* Center the image */
+        max-width: 100%; /* Ensure the image fits within the note */
+        height: auto; /* Maintain aspect ratio */
       }
 
       .note-content {
