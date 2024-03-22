@@ -60,9 +60,7 @@ function displayNotes(notes) {
     noteContent.classList.add(
       "note-content",
       "mb-10", // Margin bottom 10 units
-      "overflow-hidden", // Hide overflow text
-      "text-ellipsis", // Add ellipsis if text overflows
-      "break-all" // Break all words to prevent overflow
+      "text-pretty"
     );
     noteContent.textContent = note.content;
 
@@ -71,8 +69,11 @@ function displayNotes(notes) {
     noteMeta.classList.add(
       "note-meta",
       "text-sm", // Small font size
-      "text-gray-600" // Text color gray-600
+      "text-gray-600", // Text color gray-600
+      "text-wrap",
+      "overflow-hidden"
     );
+
     noteMeta.innerHTML = `
       <span>Published: ${new Date(
         note.created_at * 1000
