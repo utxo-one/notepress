@@ -1,6 +1,6 @@
 # Notepress
 
-The absolute bare minimum way to display your notes on a webpage.
+A way to show your nost notes if you hate front end frameworks.
 
 ## Getting Started
 
