@@ -1,5 +1,6 @@
 import NDK from "@nostr-dev-kit/ndk";
 import { hexkey, npub, relays } from "./config";
+import "./style.css";
 
 async function fetchData() {
   try {
