@@ -26,6 +26,11 @@ npm install
 
 Edit the `config.js` file to your liking.
 
+```bash
+cp config.example.js config.js
+nano config.js
+```
+
 ```javascript
 export const relays = [
   "wss://relay.utxo.one",
