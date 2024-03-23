@@ -4,13 +4,21 @@
     <meta charset="UTF-8" />
     <title>utxo | freedom tech developer</title>
     <link href="/style/output.css" rel="stylesheet" />
-
   </head>
   <body class="font-sans bg-gray-500">
+    <div
+      id="loadingSpinner"
+      class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center"
+    >
+      <div
+        class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-12 w-12 mb-4"
+      ></div>
+    </div>
+
     <div class="container px-4 mx-auto">
       <div
         id="profile"
-        class="p-8 mt-8 text-center bg-white rounded-lg shadow-md"
+        class="p-8 mt-8 mb-4 text-center bg-white rounded-lg shadow-md"
       >
         <img
           id="image"
@@ -32,11 +40,12 @@
           >Website</a
         >
       </div>
+      <div id="longNotesContainer" class="mt-8 max-w-4xl mx-auto"></div>
 
-      <div
+      <!-- <div
         id="notesContainer"
         class="p-8 mt-8 bg-white rounded-lg shadow-md"
-      ></div>
+      ></div> -->
     </div>
 
     <script type="module" src="/main.js"></script>
