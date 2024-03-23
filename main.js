@@ -1,6 +1,7 @@
 import NDK from "@nostr-dev-kit/ndk";
 import { excludeNotes, hexkey, npub, relays } from "./config";
 import showdown from "showdown";
+import hashbow from "hashbow";
 
 async function fetchData() {
   try {
@@ -52,45 +53,73 @@ function updateUserProfile(profile) {
   document.getElementById("website").textContent = profile.website;
 }
 
+function stripMarkdown(markdown) {
+  // Regular expression to match Markdown links, images, bold, italics, etc.
+  const markdownRegex =
+    /!\[[^\]]*\]\([^\)]*\)|\[([^\]]+)\]\([^\)]*\)|\*\*([^*]+)\*\*|__([^_]+)__|\*([^*]+)\*|_([^_]+)_|`([^`]+)`|~~([^~]+)~~/g;
+  // Replace Markdown formatting with just the text content
+  let plainText = markdown.replace(markdownRegex, "$1$2$3$4$5$6$7");
+
+  // Further strip any remaining Markdown symbols like >, #, *, -, etc.
+  plainText = plainText.replace(/[#>*-]+/g, "").trim();
+
+  return plainText;
+}
+
 function displayLongNoteIndex(longNotes) {
   const container = document.getElementById("longNotesContainer");
   container.innerHTML = "";
   container.className = "grid grid-cols-1 md:grid-cols-3 gap-4";
 
   longNotes.forEach((note) => {
-    const noteId = note.id; // Assume each note has an 'id' field
+    const noteId = note.id;
 
-    // Check if the noteId is in the excludeNotes array and skip it if so
     if (excludeNotes.includes(noteId)) {
-      return; // Skip this iteration, effectively excluding the note from being displayed
+      return; // Skip this note
     }
 
-    const noteElement = document.createElement("a"); // Make the entire note a link
+    const noteElement = document.createElement("a");
     noteElement.href = `/article/${noteId}`;
     noteElement.className =
-      "bg-white rounded-lg overflow-hidden shadow-lg block";
-    noteElement.onclick = (e) => {
-      e.preventDefault();
-      window.location.href = `/article/${noteId}`;
-    };
+      "block bg-white rounded-lg overflow-hidden shadow-lg";
 
     const imageTag = note.tags.find((tag) => tag[0] === "image");
     const summaryTag = note.tags.find((tag) => tag[0] === "summary");
     const titleTag = note.tags.find((tag) => tag[0] === "title");
+    const contentTag = note.tags.find((tag) => tag[0] === "content");
 
-    const imageUrl = imageTag
-      ? imageTag[1]
-      : "https://via.placeholder.com/400x300"; // Fallback image URL
-    const summary = summaryTag ? summaryTag[1] : "No summary available";
     const title = titleTag ? titleTag[1] : "Untitled";
+    let summary = summaryTag && summaryTag[1] ? summaryTag[1] : "";
+
+    if (!summary && contentTag && contentTag[1]) {
+      const plainText = stripMarkdown(contentTag[1]);
+      summary = plainText.split(/\s+/).slice(0, 10).join(" ") + "...";
+    }
+
+    const imageUrl =
+      imageTag && imageTag[1] && imageTag[1].trim() !== "" ? imageTag[1] : null;
+    const backgroundColor = imageUrl
+      ? ""
+      : `background-color: ${hashbow(title)};`;
 
     noteElement.innerHTML = `
-            <img src="${imageUrl}" alt="Note Image" class="object-cover w-full h-48"> <!-- Fixed height for images -->
+            <div class="note-image h-48 w-full" style="${backgroundColor}">
+                ${
+                  imageUrl
+                    ? `<img src="${imageUrl}" alt="Note Image" class="object-cover w-full h-full">`
+                    : ""
+                }
+            </div>
             <div class="p-4">
                 <h3 class="text-lg font-semibold mb-2">${title}</h3>
                 <p class="text-gray-700 text-sm">${summary}</p>
             </div>
         `;
+
+    noteElement.onclick = (e) => {
+      e.preventDefault();
+      window.location.href = noteElement.href;
+    };
 
     container.appendChild(noteElement);
   });
@@ -98,6 +127,7 @@ function displayLongNoteIndex(longNotes) {
 
 async function displayLongNote(note, ndk) {
   const container = document.getElementById("longNotesContainer");
+
   container.innerHTML = "";
 
   const classMap = {
