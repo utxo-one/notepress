@@ -1,4 +1,4 @@
 dist/
 node_modules/
 config.js
-output.css
+/style/output.css
