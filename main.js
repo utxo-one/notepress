@@ -2,6 +2,7 @@ import NDK from "@nostr-dev-kit/ndk";
 import { excludeNotes, hexkey, npub, relays } from "./config";
 import showdown from "showdown";
 import hashbow from "hashbow";
+import "/style/output.css";
 
 async function fetchData() {
   try {
