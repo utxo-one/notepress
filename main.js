@@ -4,6 +4,16 @@ import showdown from "showdown";
 import hashbow from "hashbow";
 import "/style/output.css";
 
+const darkModeToggle = document.getElementById("darkModeToggle");
+      const html = document.documentElement;
+
+      darkModeToggle.addEventListener("click", () => {
+        html.classList.toggle("dark");
+        darkModeToggle
+          .querySelector("span")
+          .classList.toggle("translate-x-full");
+      });
+
 async function fetchData() {
   try {
     const ndk = new NDK({ explicitRelayUrls: relays });
@@ -82,7 +92,7 @@ function displayLongNoteIndex(longNotes) {
     const noteElement = document.createElement("a");
     noteElement.href = `/article/${noteId}`;
     noteElement.className =
-      "block bg-white rounded-lg overflow-hidden shadow-lg";
+      "block bg-white dark:bg-slate-800 text-black dark:text-white rounded-lg overflow-hidden shadow-lg";
 
     const imageTag = note.tags.find((tag) => tag[0] === "image");
     const summaryTag = note.tags.find((tag) => tag[0] === "summary");
@@ -113,7 +123,7 @@ function displayLongNoteIndex(longNotes) {
             </div>
             <div class="p-4">
                 <h3 class="text-lg font-semibold mb-2">${title}</h3>
-                <p class="text-gray-700 text-sm">${summary}</p>
+                <p class="text-slate-700 dark:text-slate-400 text-sm">${summary}</p>
             </div>
         `;
 

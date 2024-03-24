@@ -3,29 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <title>utxo | freedom tech developer</title>
-    <!-- <link href="/style/output.css" rel="stylesheet" /> -->
+    <link href="/style/output.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="font-sans bg-gray-500">
+  <body class="font-sans bg-slate-200 dark:bg-slate-900">
+    <button
+      id="darkModeToggle"
+      class="fixed top-4 right-4 flex items-center justify-center w-12 h-6 bg-gray-300 rounded-full focus:outline-none"
+    >
+      <span
+        class="absolute left-0 top-0 w-6 h-6 bg-white rounded-full shadow-md transform transition-transform duration-300 ease-in-out"
+      ></span>
+    </button>
     <div
       id="loadingSpinner"
-      class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center"
+      class="fixed inset-0 bg-gray-400 bg-opacity-75 flex items-center justify-center"
     >
       <div
-        class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-12 w-12 mb-4"
+        class="loader ease-linear rounded-full border-8 border-t-8 border-slate-200 h-12 w-12 mb-4"
       ></div>
     </div>
 
     <div class="container px-4 mx-auto">
       <div
         id="profile"
-        class="p-8 mt-8 mb-4 text-center bg-white rounded-lg shadow-md"
+        class="p-8 mt-8 mb-4 text-center bg-slate-100 dark:bg-slate-800 dark:text-white text-black rounded-lg shadow-md"
       >
         <img
           id="image"
           src=""
           alt="Profile image"
-          class="object-cover w-32 h-32 mx-auto mb-4 border-4 border-gray-700 rounded-full"
+          class="object-cover w-32 h-32 mx-auto mb-4 border-4 border-slate-800 dark:border-slate-100 rounded-full"
         />
         <h1 id="name" class="mb-2 text-2xl font-bold"></h1>
         <p id="about" class="mb-4 text-base text-gray-600"></p>
@@ -48,7 +56,6 @@
         class="p-8 mt-8 bg-white rounded-lg shadow-md"
       ></div> -->
     </div>
-
     <script type="module" src="/main.js"></script>
   </body>
 </html>
