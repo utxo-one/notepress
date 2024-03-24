@@ -4,15 +4,42 @@ import showdown from "showdown";
 import hashbow from "hashbow";
 import "/style/output.css";
 
-const darkModeToggle = document.getElementById("darkModeToggle");
-      const html = document.documentElement;
+// Function to set dark mode preference
+function setDarkModePreference(isDarkMode) {
+  localStorage.setItem('darkMode', isDarkMode);
+}
 
-      darkModeToggle.addEventListener("click", () => {
-        html.classList.toggle("dark");
-        darkModeToggle
-          .querySelector("span")
-          .classList.toggle("translate-x-full");
-      });
+// Function to get dark mode preference
+function getDarkModePreference() {
+  return JSON.parse(localStorage.getItem('darkMode'));
+}
+
+// Function to toggle dark mode
+function toggleDarkMode() {
+  const isDarkMode = getDarkModePreference();
+  const html = document.documentElement;
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  if (isDarkMode) {
+      html.classList.add('dark');
+      darkModeToggle.querySelector('span').classList.add('translate-x-full');
+  } else {
+      html.classList.remove('dark');
+      darkModeToggle.querySelector('span').classList.remove('translate-x-full');
+  }
+}
+
+// On page load, apply dark mode preference
+window.addEventListener('load', () => {
+  toggleDarkMode();
+});
+
+// Event listener for dark mode toggle button
+const darkModeToggle = document.getElementById('darkModeToggle');
+darkModeToggle.addEventListener('click', () => {
+  const isDarkMode = getDarkModePreference();
+  setDarkModePreference(!isDarkMode);
+  toggleDarkMode();
+});
 
 async function fetchData() {
   try {
