@@ -194,7 +194,9 @@ async function displayLongNote(note, ndk) {
     "border-solid", // Solid border style
     "border-gray-300", // Border color gray-300
     "rounded", // Rounded corners
-    "bg-gray-100" // Background color gray-100
+    "bg-gray-100",// Background color gray-100
+    "dark:bg-slate-800",
+    "dark:text-white"
   );
 
   // Convert Markdown to HTML using Showdown
