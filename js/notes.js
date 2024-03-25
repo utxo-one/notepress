@@ -13,7 +13,9 @@ async function displayNotes(notes, ndk) {
       "border-solid", // Solid border style
       "border-gray-300", // Border color gray-300
       "rounded", // Rounded corners
-      "bg-gray-100" // Background color gray-100
+      "bg-gray-100", // Background color gray-100
+      "dark:bg-gray-800",
+      "dark:text-white"
     );
 
     // Create note content element
