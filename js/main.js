@@ -8,6 +8,14 @@ import { fetchLongNotes, fetchUserProfile } from "./fetch";
 import { displayLongNote } from "./article";
 import { displayLongNoteIndex } from "./article_index";
 
+const darkModeToggle = document.getElementById("darkModeToggle");
+const html = document.documentElement;
+
+darkModeToggle.addEventListener("click", () => {
+  html.classList.toggle("dark");
+  darkModeToggle.querySelector("span").classList.toggle("translate-x-full");
+});
+
 async function bootstrap() {
   try {
     const ndk = new NDK({ explicitRelayUrls: relays });

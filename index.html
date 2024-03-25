@@ -6,8 +6,18 @@
     <title>utxo | freedom tech developer</title>
     <link href="/style/output.css" rel="stylesheet" />
   </head>
-  <body class="font-sans bg-gray-500">
+  <body
+    class="font-sans text-black bg-gray-500 dark:bg-gray-900 dark:text-white"
+  >
     <div class="container px-4 mx-auto">
+      <button
+        id="darkModeToggle"
+        class="fixed flex items-center justify-center w-12 h-6 bg-gray-300 rounded-full top-4 right-4 focus:outline-none"
+      >
+        <span
+          class="absolute top-0 left-0 w-6 h-6 transition-transform duration-300 ease-in-out transform bg-white rounded-full shadow-md"
+        ></span>
+      </button>
       <div
         id="profile"
         class="p-8 mt-8 mb-4 text-center bg-white rounded-lg shadow-md"
@@ -36,9 +46,9 @@
           >🔗 Website</a
         >
       </div>
-      <div id="longNotesContainer" class="mt-8 container mx-auto bg-gray-100">
+      <div id="longNotesContainer" class="container mx-auto mt-8 bg-gray-100">
         <div
-          class="p-10 text-center text-4xl md:text-5xl font-bold mb-10 leading-tight"
+          class="p-10 mb-10 text-4xl font-bold leading-tight text-center md:text-5xl"
         >
           Loading, Please Wait 🤙 Pura Vida!
         </div>
