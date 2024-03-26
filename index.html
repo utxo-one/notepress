@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>utxo | freedom tech developer</title>
     <link href="/style/output.css" rel="stylesheet" />
   </head>
-  <body class="font-sans bg-gray-500">
+  <body class="font-sans bg-bgPrimary text-text">
     <div class="container px-4 mx-auto">
+      <button
+        id="darkModeToggle"
+        class="fixed flex items-center justify-center w-12 h-6 bg-gray-300 rounded-full top-4 right-4 focus:outline-none"
+      >
+        <span
+          class="absolute top-0 left-0 w-6 h-6 transition-transform duration-300 ease-in-out transform bg-white rounded-full shadow-md"
+        ></span>
+      </button>
+      <!----------------------REPLACE BUTTON WITH THEME SELECTION-->
       <div
         id="profile"
-        class="p-8 mt-8 mb-4 text-center bg-white rounded-lg shadow-md"
+        class="p-8 mt-8 mb-4 text-center bg-bgSecondary rounded-lg shadow-md"
       >
         <a href="/"
           ><img
             id="image"
             src="https://robohash.org/142.112.63.171.png"
             alt="Profile image"
-            class="object-cover w-32 h-32 mx-auto mb-4 border-4 border-gray-700 rounded-full"
+            class="object-cover w-32 h-32 mx-auto mb-4 border-4 border-bgInverted rounded-full dark:boder-white"
         /></a>
         <h1 id="name" class="mb-2 text-2xl font-bold">Loading 🫂</h1>
-        <p id="about" class="mb-4 text-base text-gray-600">
+        <p id="about" class="mb-4 text-base text-textMuted">
           This will only take a second.
         </p>
         <a
@@ -36,9 +45,9 @@
           >🔗 Website</a
         >
       </div>
-      <div id="longNotesContainer" class="mt-8 container mx-auto bg-gray-100">
+      <div id="longNotesContainer" class="container mx-auto mt-8 bg-bgPrimary">
         <div
-          class="p-10 text-center text-4xl md:text-5xl font-bold mb-10 leading-tight"
+          class="p-10 mb-10 text-4xl font-bold leading-tight text-center md:text-5xl bg-bgSecondary"
         >
           Loading, Please Wait 🤙 Pura Vida!
         </div>
