@@ -6,7 +6,7 @@ export async function displayLongNote(note) {
 
   const noteElement = document.createElement("div");
   noteElement.className =
-    "p-10 mb-4 bg-gray-100 border border-gray-300 border-solid rounded note dark:bg-gray-800 dark:text-white";
+    "p-10 mb-4 bg-bgSecondary text-text border border-gray-300 border-solid rounded note";
 
   const noteContent = document.createElement("div");
   noteContent.className =
@@ -53,7 +53,7 @@ export async function displayLongNote(note) {
   noteElement.appendChild(noteContent);
 
   const noteMeta = document.createElement("div");
-  noteMeta.className = "text-sm text-gray-600 note-meta md:text-base";
+  noteMeta.className = "text-sm text-textMuted note-meta md:text-base";
   noteMeta.innerHTML = `Published: ${new Date(
     note.created_at * 1000
   ).toLocaleString()} | ID: ${note.id}`;

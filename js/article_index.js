@@ -13,7 +13,7 @@ export function displayLongNoteIndex(longNotes) {
     const noteElement = document.createElement("a");
     noteElement.href = `/article/${note.id}`;
     noteElement.className =
-      "block overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:text-white";
+      "block overflow-hidden bg-bgSecondary text-text rounded-lg shadow-lg";
 
     const noteImageContainer = document.createElement("div");
     noteImageContainer.className = "w-full h-48 note-image";
@@ -38,7 +38,7 @@ export function displayLongNoteIndex(longNotes) {
     noteContent.appendChild(title);
 
     const summary = document.createElement("p");
-    summary.className = "text-sm text-gray-700 dark:text-gray-200";
+    summary.className = "text-sm text-textMuted";
     summary.textContent =
       note.tags.find((tag) => tag[0] === "summary")?.[1] || "";
     noteContent.appendChild(summary);
