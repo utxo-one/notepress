@@ -8,10 +8,18 @@
   :root {
     --color-bgPrimary: rgb(225, 225, 225);
     --color-bgSecondary: rgb(255, 255, 255);
-    --color-bgInverted: rgb(0, 0, 0);
+    --color-bgInverted: rgb(16, 16, 16);
     --color-text: rgb(0, 0, 0);
     --color-textMuted: rgb(100, 100, 100);
     --color-textInverted: rgb(255, 255, 255);
+  }
+  :root[data-theme="dark"] {
+    --color-bgPrimary: rgb(16, 16, 16);
+    --color-bgSecondary: rgb(40, 40, 40);
+    --color-bgInverted: rgb(225, 225, 225);
+    --color-text: rgb(255, 255, 255);
+    --color-textMuted: rgb(200, 200, 200);
+    --color-textInverted: rgb(16, 16, 16);
   }
 }
 
