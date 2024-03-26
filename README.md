@@ -22,31 +22,17 @@ cd notepress
 npm install
 ```
 
-3. Configure the blog
-
-Edit the `config.js` file to your liking.
+3. Setup the blog
 
 ```bash
-cp config.example.js config.js
-nano config.js
+node setup
 ```
 
-```javascript
-export const relays = [
-  "wss://relay.utxo.one",
-  "wss://relay.bitcoinpark.com",
-  "wss://relay.damus.io",
-  "wss://nos.lol",
-];
-export const npub =
-  "npub1utx00neqgqln72j22kej3ux7803c2k986henvvha4thuwfkper4s7r50e8";
-export const hexkey =
-  "e2ccf7cf20403f3f2a4a55b328f0de3be38558a7d5f33632fdaaefc726c1c8eb";
+This will ask for your npub then ask if you would like to exclude any notes by ID.
 
-export const excludeNotes = [
-  "b2381de6b86e6e90971316e5866d4e7d9659ba44985f7b9bff0c449e25f9d566",
-];
-```
+This will fetch your NIP65 preferred relay list and derive your hex key from your npub for you.
+
+If you would like to add more relays, you can always manually edit the config and add them to the list.
 
 4. Bundle the code
 
