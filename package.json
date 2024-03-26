@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "@nostr-dev-kit/ndk": "^2.5.1",
+    "bech32": "^2.0.0",
     "hashbow": "^1.1.1",
     "postcss-nesting": "^12.1.0",
     "showdown": "^2.1.0",
