@@ -4,12 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        //accent:{
-        //  1: "",
-        //  2: "",
-        //},
-        bkg: "var(--color-bkg)", 
-        content: "var(--color-content)", 
+        bgPrimary: "var(--color-bgPrimary)", 
+        bgSecondary:"var(--color-bgSecondary)",
+        text: "var(--color-text)", 
+        textMuted: "var(--color-textMuted)",
+        textInverted: "var(--color-textInverted)",
       }
     },
   },

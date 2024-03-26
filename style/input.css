@@ -6,8 +6,11 @@
 
 @layer base {
   :root {
-    --color-bkg: rgb(200, 200, 200);
-    --color-content: rgb(0, 0, 0);
+    --color-bgPrimary: rgb(225, 225, 225);
+    --color-bgSecondary: rgb(255, 255, 255);
+    --color-text: rgb(0, 0, 0);
+    --color-textMuted: rgb(100, 100, 100);
+    --color-textInverted: rgb(255, 255, 255);
   }
 }
 
