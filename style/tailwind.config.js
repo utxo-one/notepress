@@ -2,8 +2,16 @@
 module.exports = {
   content: ["./**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        //accent:{
+        //  1: "",
+        //  2: "",
+        //},
+        bkg: "var(--color-bkg)", 
+        content: "var(--color-content)", 
+      }
+    },
   },
   plugins: [],
-  darkMode: "class",
 };

@@ -4,19 +4,33 @@
 @tailwind components;
 @tailwind utilities;
 
-
-  .loader {
-    border-top-color: #3498db;  /* Spinner color */
-    -webkit-animation: spinner 1.5s linear infinite;  /* Safari */
-    animation: spinner 1.5s linear infinite;
+@layer base {
+  :root {
+    --color-bkg: rgb(200, 200, 200);
+    --color-content: rgb(0, 0, 0);
   }
+}
 
-  @-webkit-keyframes spinner {
-    0% { -webkit-transform: rotate(0deg); }  /* Safari */
-    100% { -webkit-transform: rotate(360deg); }
-  }
+.loader {
+  border-top-color: #3498db; /* Spinner color */
+  -webkit-animation: spinner 1.5s linear infinite; /* Safari */
+  animation: spinner 1.5s linear infinite;
+}
 
-  @keyframes spinner {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+  } /* Safari */
+  100% {
+    -webkit-transform: rotate(360deg);
   }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
