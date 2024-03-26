@@ -1,5 +1,6 @@
 const readline = require("readline");
 const fs = require("fs");
+const WebSocket = require("ws");
 const { bech32 } = require("bech32");
 
 const rl = readline.createInterface({
@@ -23,45 +24,79 @@ function bech32ToHex(bech32String) {
   return Buffer.from(data).toString("hex");
 }
 
-// Function to write config.js based on user input
+// Function to retrieve relay list based on NPUB key
+async function retrieveRelayList(npub) {
+  return new Promise((resolve, reject) => {
+    const relayUrl = "wss://purplepag.es";
+    const ws = new WebSocket(relayUrl);
+
+    ws.on("open", () => {
+      const subscriptionId = "relay_list_subscription";
+      const filters = {
+        authors: [npub],
+        kinds: [10002],
+      };
+      ws.send(JSON.stringify(["REQ", subscriptionId, filters]));
+    });
+
+    ws.on("message", (message) => {
+      const data = JSON.parse(message);
+      if (data[0] === "EVENT" && data[1] === "relay_list_subscription") {
+        const relayList = data[2];
+        ws.close();
+        resolve(relayList);
+      }
+    });
+
+    ws.on("error", (err) => {
+      reject(err);
+    });
+  });
+}
+
+// Function to write config.js based on user input and relay list
 async function writeConfig() {
   const relays = [];
-  while (true) {
-    const relay = await prompt(
-      "Enter a WebSocket relay (leave empty to finish): "
-    );
-    if (!relay) break;
-    relays.push(`"${relay}"`);
-  }
-
   const npub = await prompt("Enter your NPUB key: ");
   const hexkey = bech32ToHex(npub); // Convert NPUB to hexadecimal
 
-  const excludeNotes = [];
-  while (true) {
-    const exclude = await prompt(
-      "Enter any note IDs you want to exclude, separated by comma (leave empty to finish):"
-    );
-    if (!exclude) break;
-    excludeNotes.push(`"${exclude}"`);
+  try {
+    const relayList = await retrieveRelayList(hexkey);
+    relayList.tags.forEach((tag) => {
+      if (tag[0] === "r") {
+        relays.push(`"${tag[1].replace("wss://", "")}"`);
+      }
+    });
+
+    const excludeNotes = [];
+    while (true) {
+      const exclude = await prompt(
+        "Enter any note IDs you want to exclude (leave empty to finish): "
+      );
+      if (!exclude) break;
+      excludeNotes.push(`"${exclude}"`);
+    }
+
+    const configContent = `
+  export const relays = [
+    ${relays.join(",\n  ")}
+  ];
+  
+  export const npub = "${npub}";
+  export const hexkey = "${hexkey}";
+  
+  export const excludeNotes = [
+    ${excludeNotes.join(",\n  ")}
+  ];
+  `;
+
+    fs.writeFileSync("config.js", configContent);
+    console.log("Config file created successfully.");
+  } catch (error) {
+    console.error("Error retrieving relay list:", error);
+  } finally {
+    rl.close();
   }
-
-  const configContent = `
-export const relays = [
-  ${relays.join(",\n  ")}
-];
-
-export const npub = "${npub}";
-export const hexkey = "${hexkey}";
-
-export const excludeNotes = [
-  ${excludeNotes.join(",\n  ")}
-];
-`;
-
-  fs.writeFileSync("config1.js", configContent);
-  console.log("Config file created successfully.");
-  rl.close();
 }
 
 // Run the function
