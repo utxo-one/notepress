@@ -64,7 +64,7 @@ async function writeConfig() {
     const relayList = await retrieveRelayList(hexkey);
     relayList.tags.forEach((tag) => {
       if (tag[0] === "r") {
-        relays.push(`"${tag[1].replace("wss://", "")}"`);
+        relays.push(`"wss://${tag[1].replace("wss://", "")}"`);
       }
     });
 
