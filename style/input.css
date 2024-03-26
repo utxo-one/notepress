@@ -8,6 +8,7 @@
   :root {
     --color-bgPrimary: rgb(225, 225, 225);
     --color-bgSecondary: rgb(255, 255, 255);
+    --color-bgInverted: rgb(0, 0, 0);
     --color-text: rgb(0, 0, 0);
     --color-textMuted: rgb(100, 100, 100);
     --color-textInverted: rgb(255, 255, 255);
