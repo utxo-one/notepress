@@ -32,6 +32,7 @@ function toggleDarkMode() {
     darkModeToggle.querySelector("span").classList.remove("translate-x-full");
   }
 }
+//CHANGE THIS FUNCTION TO TOGGLE MORE THAN TWO THEMES
 
 
 // On page load, apply dark mode preference
