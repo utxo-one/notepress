@@ -1,37 +1,30 @@
-// Function to set dark mode preference
-function setDarkModePreference(isDarkMode) {
-    localStorage.setItem("darkMode", isDarkMode);
+// Function to set theme preference
+function setThemePreference(theme) {
+    localStorage.setItem("theme", theme);
   }
   
-  // Function to get dark mode preference
-  function getDarkModePreference() {
-    return JSON.parse(localStorage.getItem("darkMode"));
+  // Function to get theme preference
+  function getThemePreference() {
+    return localStorage.getItem("theme") || "light";
   }
   
-  // Function to toggle dark mode
-  function toggleDarkMode() {
-    const isDarkMode = getDarkModePreference();
+  // Function to apply theme
+  function applyTheme(theme) {
     const html = document.documentElement;
-    const darkModeToggle = document.getElementById("darkModeToggle");
-  
-    if (isDarkMode) {
-      html.setAttribute("data-theme", "dark");
-      darkModeToggle.querySelector("span").classList.add("translate-x-full");
-    } else {
-      html.removeAttribute("data-theme");
-      darkModeToggle.querySelector("span").classList.remove("translate-x-full");
-    }
+    html.setAttribute("data-theme", theme);
   }
   
-  // On page load, apply dark mode preference
+  // On page load, apply theme preference
   window.addEventListener("load", () => {
-    toggleDarkMode();
+    const preferredTheme = getThemePreference();
+    applyTheme(preferredTheme);
+    document.getElementById("themeSelect").value = preferredTheme;
   });
   
-  // Event listener for dark mode toggle button
-  const darkModeToggle = document.getElementById("darkModeToggle");
-  darkModeToggle.addEventListener("click", () => {
-    const isDarkMode = getDarkModePreference();
-    setDarkModePreference(!isDarkMode);
-    toggleDarkMode();
+  // Event listener for theme selection dropdown
+  const themeSelect = document.getElementById("themeSelect");
+  themeSelect.addEventListener("change", (event) => {
+    const selectedTheme = event.target.value;
+    setThemePreference(selectedTheme);
+    applyTheme(selectedTheme);
   });
