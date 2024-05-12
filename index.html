@@ -7,27 +7,27 @@
     <link href="/style/output.css" rel="stylesheet" />
   </head>
   <body class="font-sans bg-bgPrimary text-text">
+    <select
+      id="themeSelect"
+      class="fixed ml-16 mt-4 px-2 py-2 bg-bgPrimary rounded-md focus:outline-none"
+    >
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+      <option value="midnight">Midnight</option>
+      <option value="solar">Solar</option>
+      <option value="lava">Lava</option>
+    </select>
     <div class="container px-4 mx-auto">
       <div
         id="profile"
         class="p-8 mt-8 mb-4 text-center bg-bgSecondary rounded-lg shadow-md"
       >
-        <select
-          id="themeSelect"
-          class="float-left px-2 py-2 bg-bgPrimary rounded-md focus:outline-none"
-        >
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-          <option value="midnight">Midnight</option>
-          <option value="solar">Solar</option>
-          <option value="lava">Lava</option>
-        </select>
         <a href="/"
           ><img
             id="image"
             src="https://robohash.org/142.112.63.171.png"
             alt="Profile image"
-            class="object-cover w-32 h-32 mx-auto mb-4 border-4 border-bgInverted rounded-full"
+            class="object-cover w-32 h-32 mx-auto mb-4 border-2 border-bgInverted rounded-3xl"
         /></a>
         <h1 id="name" class="mb-2 text-2xl font-bold">Loading 🫂</h1>
         <p id="about" class="mb-4 text-base text-textMuted">
