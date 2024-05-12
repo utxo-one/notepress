@@ -3,20 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>utxo | freedom tech developer</title>
+    <title>Personal Blog</title>
     <link href="/style/output.css" rel="stylesheet" />
   </head>
   <body class="font-sans bg-bgPrimary text-text">
+    <select
+      id="themeSelect"
+      class="fixed ml-16 mt-4 px-2 py-2 bg-bgPrimary rounded-md focus:outline-none"
+    >
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+      <option value="midnight">Midnight</option>
+      <option value="solar">Solar</option>
+      <option value="lava">Lava</option>
+    </select>
     <div class="container px-4 mx-auto">
-      <button
-        id="darkModeToggle"
-        class="fixed flex items-center justify-center w-12 h-6 bg-gray-300 rounded-full top-4 right-4 focus:outline-none"
-      >
-        <span
-          class="absolute top-0 left-0 w-6 h-6 transition-transform duration-300 ease-in-out transform bg-white rounded-full shadow-md"
-        ></span>
-      </button>
-      <!----------------------REPLACE BUTTON WITH THEME SELECTION-->
       <div
         id="profile"
         class="p-8 mt-8 mb-4 text-center bg-bgSecondary rounded-lg shadow-md"
@@ -26,7 +27,7 @@
             id="image"
             src="https://robohash.org/142.112.63.171.png"
             alt="Profile image"
-            class="object-cover w-32 h-32 mx-auto mb-4 border-4 border-bgInverted rounded-full dark:boder-white"
+            class="object-cover w-32 h-32 mx-auto mb-4 border-2 border-bgInverted rounded-3xl"
         /></a>
         <h1 id="name" class="mb-2 text-2xl font-bold">Loading 🫂</h1>
         <p id="about" class="mb-4 text-base text-textMuted">

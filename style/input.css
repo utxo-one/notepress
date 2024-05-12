@@ -6,14 +6,6 @@
 
 @layer base {
   :root {
-    --color-bgPrimary: rgb(225, 225, 225);
-    --color-bgSecondary: rgb(255, 255, 255);
-    --color-bgInverted: rgb(16, 16, 16);
-    --color-text: rgb(0, 0, 0);
-    --color-textMuted: rgb(100, 100, 100);
-    --color-textInverted: rgb(255, 255, 255);
-  }
-  :root[data-theme="dark"] {
     --color-bgPrimary: rgb(16, 16, 16);
     --color-bgSecondary: rgb(40, 40, 40);
     --color-bgInverted: rgb(225, 225, 225);
@@ -21,11 +13,35 @@
     --color-textMuted: rgb(200, 200, 200);
     --color-textInverted: rgb(16, 16, 16);
   }
+  :root[data-theme="light"] {
+    --color-bgPrimary: rgb(200, 200, 200);
+    --color-bgSecondary: rgb(230, 230, 230);
+    --color-bgInverted: rgb(80, 80, 80);
+    --color-text: rgb(0, 0, 0);
+    --color-textMuted: rgb(100, 100, 100);
+    --color-textInverted: rgb(255, 255, 255);
+  }
   :root[data-theme="midnight"] {
     --color-bgPrimary: rgb(25, 24, 48);
     --color-bgSecondary: rgb(31, 31, 65);
     --color-bgInverted: rgb(250, 208, 0);
     --color-text: rgb(206, 197, 255);
+    --color-textMuted: rgb(102, 241, 255);
+    --color-textInverted: rgb(236, 208, 0);
+  }
+  :root[data-theme="lava"] {
+    --color-bgPrimary: rgb(57, 0, 0);
+    --color-bgSecondary: rgb(97, 0, 0);
+    --color-bgInverted: rgb(244, 40, 28);
+    --color-text: rgb(241, 39, 39);
+    --color-textMuted: rgb(182, 113, 109);
+    --color-textInverted: rgb(236, 208, 0);
+  }
+  :root[data-theme="solar"] {
+    --color-bgPrimary: rgb(0, 43, 54);
+    --color-bgSecondary: rgb(7, 54, 56);
+    --color-bgInverted: rgb(115, 174, 99);
+    --color-text: rgb(55, 148, 255);
     --color-textMuted: rgb(102, 241, 255);
     --color-textInverted: rgb(236, 208, 0);
   }
